@@ -1,5 +1,6 @@
 import React, {useState} from 'react'; 
 import './App.css';
+import TodoTable from './TodoTable'; 
 
 
 const Todolist = () => {
@@ -27,8 +28,8 @@ const addTodo = (event) => {
   //  e.preventDefault();
     //console.log(listItem.date, listItem.description);
   //};
-  const handleDelete = e => {
-      const {idx} = e.target.parentElement;
+  const handleDelete = idx => {
+      //const {idx} = e.target.parentElement;
       todos.splice(idx, 1)
       setTodos([...todos]); 
   }
@@ -49,27 +50,14 @@ return (
            
             <input type="submit" value="Add"/>
         </form>
-        </div>
-
-        <table>
-            <tbody>
-                {todos.map(function(list, idx) {
-                    return (<tr key={idx}>
-                        <td>{list.date}</td>
-                        <br></br>
-                        <td>{list.description}</td>
-                        <button className="delete-todo" onClick={handleDelete}>X</button>
-                        </tr>)
-                })}
-              
-                
-            </tbody>
-        </table>
-
-    </div>
-    
         
+        <TodoTable todos={todos} 
+        clicked={handleDelete}
+        />
     
+        </div>
+    </div>
+
 );
 }
 export default Todolist; 
