@@ -1,10 +1,39 @@
 import React from 'react';
+import ReactTable from "react-table";
+import "react-table/react-table.css";
 
 
 const TodoTable = (props) => {
-
-return (
+    const columns = [ 
+        {
+          Header: "Time",
+          accessor: "date"
+        },
+        {
+          Header: "Todos",
+          accessor: "description"
+        },
+        {
+          Header: "Delete",
+          Cell: row => (
+            <button onClick={() => props.clicked(row)}>Delete</button>
+          )
+        },
+      ];
+      return (
+        <div>
+          <ReactTable 
+            data={props.todos}
+            columns={columns}
+            sortable={true}
+            defaultPageSize={10}            
+          />
+        </div>
+      );
+    };
+/*return (
 <div>
+    
 <table>
             <tbody>
                 <tr><th>Date</th><th>Description</th></tr>
@@ -24,5 +53,5 @@ return (
 
 </div>
 );
-}
+}*/
 export default TodoTable;

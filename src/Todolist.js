@@ -1,8 +1,6 @@
 import React, {useState} from 'react'; 
 import './App.css';
 import TodoTable from './TodoTable'; 
-import ReactTable from 'react-table'; 
-import 'react-table/react-table.css'
 
 
 const Todolist = () => {
@@ -39,13 +37,11 @@ const addTodo = (event) => {
       todos.splice(idx, 1)
       setTodos([...todos]); 
   };
-  const completeTodo = idx => {
+  const completeTodo = row => {
       const newTodos = [...todos];
-      todos[idx].isCompleted = true;
-      //todos[idx].isCompleted = true; 
+      todos[row].isCompleted = true;
       setTodos(newTodos);
   };
-
 
 
 return (
@@ -54,7 +50,7 @@ return (
         <form onSubmit={addTodo}>
             <lable>
                 Date:
-            <input type="text" name = "date" value={listItem.date} onChange={inputChanged} />
+            <input type="text" name = "date" placeholder="dd.mm.yyyy" value={listItem.date} onChange={inputChanged} />
             </lable>
 
             <lable>
@@ -76,4 +72,6 @@ return (
 
 );
 }
+
+
 export default Todolist; 
