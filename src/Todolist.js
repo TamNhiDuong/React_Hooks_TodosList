@@ -25,7 +25,8 @@ const inputChanged = (event) => {
 
 const addTodo = (event) => {
     event.preventDefault();
-    const newArr = todos.slice();
+    const newArr = [...todos];
+    //const newArr = todos.slice();
     newArr.splice(0, 0, {date : listItem.date, description: listItem.description, isCompleted: false}); 
     setTodos(newArr);
 };
