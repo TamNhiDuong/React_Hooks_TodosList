@@ -42,5 +42,8 @@ table {
     height: 30px;
     width: 30%;
   }
+  .todo-is-completed input {
+    text-decoration: line-through; 
+  }
 
   

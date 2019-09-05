@@ -1,12 +1,15 @@
 import React, {useState} from 'react'; 
 import './App.css';
 import TodoTable from './TodoTable'; 
+import ReactTable from 'react-table'; 
+import 'react-table/react-table.css'
 
 
 const Todolist = () => {
 const [listItem, setListItem] = useState({
     date: "",
-    description: ""
+    description: "",
+    isCompleted: false
 });
 
 const [todos, setTodos] = useState([]);
@@ -22,7 +25,9 @@ const inputChanged = (event) => {
 
 const addTodo = (event) => {
     event.preventDefault();
-    setTodos([...todos, listItem]);
+    const newArr = todos.slice();
+    newArr.splice(0, 0, {date : listItem.date, description: listItem.description, isCompleted: false}); 
+    setTodos(newArr);
 };
 //const addTodo = e => {
   //  e.preventDefault();
@@ -32,7 +37,15 @@ const addTodo = (event) => {
       //const {idx} = e.target.parentElement;
       todos.splice(idx, 1)
       setTodos([...todos]); 
-  }
+  };
+  const completeTodo = idx => {
+      const newTodos = [...todos];
+      todos[idx].isCompleted = true;
+      //todos[idx].isCompleted = true; 
+      setTodos(newTodos);
+  };
+
+
 
 return (
     <div>
@@ -51,8 +64,10 @@ return (
             <input type="submit" value="Add"/>
         </form>
         
+        
         <TodoTable todos={todos} 
         clicked={handleDelete}
+        completeTodo={completeTodo}
         />
     
         </div>
